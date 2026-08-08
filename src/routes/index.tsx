@@ -5,7 +5,7 @@ import { useEffect, useRef, useState, type ReactNode } from "react";
  * Single source of truth for identity.
  * Change SITE_URL to the final custom domain once DNS is pointed.
  * ------------------------------------------------------------------ */
-const SITE_URL = "https://zerobuildlab.dev";
+const SITE_URL = "https://hire.zerobuildlab.dev";
 const EMAIL = "zerobuildlab@gmail.com";
 const GITHUB = "https://github.com/winduadiprabowo-pixel";
 const OG_IMAGE = `${SITE_URL}/og-image.jpg`;
