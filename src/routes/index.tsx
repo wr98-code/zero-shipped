@@ -270,6 +270,17 @@ function Index() {
                     </a>
                   </li>
                 ))}
+                <li>
+                  <a
+                    href={STUDIO}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="label text-steel hover:text-signal"
+                  >
+                    Studio <span aria-hidden="true">&#8599;</span>
+                    <span className="sr-only">(opens the studio site in a new tab)</span>
+                  </a>
+                </li>
               </ul>
             </nav>
           </div>
