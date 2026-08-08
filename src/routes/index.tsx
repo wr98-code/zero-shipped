@@ -8,6 +8,7 @@ import { useEffect, useRef, useState, type ReactNode } from "react";
 const SITE_URL = "https://hire.zerobuildlab.dev";
 const EMAIL = "zerobuildlab@gmail.com";
 const GITHUB = "https://github.com/winduadiprabowo-pixel";
+const STUDIO = "https://zerobuildlab.dev";
 const OG_IMAGE = `${SITE_URL}/og-image.jpg`;
 
 const SPRINT_1 =
@@ -434,6 +435,9 @@ function Index() {
 
             <p className="label rail mt-14 text-steel">
               Also shipped — Dapur OS · Zerø Clip · Core Meridian
+            </p>
+            <p className="label-lg rail mt-3 text-ink">
+              <Verify href={STUDIO}>The full studio →</Verify>
             </p>
           </Shell>
         </section>
