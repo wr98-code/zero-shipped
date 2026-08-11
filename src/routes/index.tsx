@@ -7,7 +7,10 @@ import { useEffect, useRef, useState, type ReactNode } from "react";
  * ------------------------------------------------------------------ */
 const SITE_URL = "https://hire.zerobuildlab.dev";
 const EMAIL = "zerobuildlab@gmail.com";
-const GITHUB = "https://github.com/winduadiprabowo-pixel";
+/* Leave empty until a studio-owned GitHub org exists.
+ * A personal account URL puts a real name on the page and in search results.
+ * When the org account is ready, set it here and the Contact link returns. */
+const GITHUB = "";
 const STUDIO = "https://zerobuildlab.dev";
 const OG_IMAGE = `${SITE_URL}/og-image.jpg`;
 
@@ -16,14 +19,15 @@ const SPRINT_1 =
 const SPRINT_2 =
   "https://birdeye.so/data-api/blog/detail/birdeye-data-build-in-public-sprint-2-results";
 
-const PERSON_SCHEMA = {
+/* Organization, not Person. A Person schema publishes a real name as
+ * machine-readable data that search engines index and surface. */
+const STUDIO_SCHEMA = {
   "@context": "https://schema.org",
-  "@type": "Person",
-  name: "Windu Adi Prabowo",
+  "@type": "Organization",
+  name: "Zero Build Lab",
   url: SITE_URL,
-  jobTitle: "Full-Stack Developer",
   email: `mailto:${EMAIL}`,
-  sameAs: [GITHUB],
+  ...(GITHUB ? { sameAs: [GITHUB] } : {}),
   address: { "@type": "PostalAddress", addressCountry: "ID" },
   knowsAbout: [
     "React",
@@ -48,13 +52,13 @@ export const Route = createFileRoute("/")({
       {
         name: "description",
         content:
-          "Independent full-stack developer building and operating production web apps solo — auth, payments, webhooks, email deliverability, domains and offline support.",
+          "Production web apps and the infrastructure underneath them — auth, payments, webhooks, email deliverability, domains and offline support. White-label for agencies.",
       },
       { property: "og:title", content: "Zero Build Lab — Ships. Then stays shipped." },
       {
         property: "og:description",
         content:
-          "Production web apps and the infrastructure underneath them. Built and operated solo for founders in the UK, EU and US.",
+          "Production web apps and the infrastructure underneath them. Built, shipped and still operated — for founders and agencies in the UK, EU and US.",
       },
       { property: "og:type", content: "website" },
       { property: "og:url", content: SITE_URL },
@@ -64,7 +68,7 @@ export const Route = createFileRoute("/")({
       {
         name: "twitter:description",
         content:
-          "Independent full-stack developer. Auth, payments, webhooks, email, domains — built and operated solo.",
+          "Auth, payments, webhooks, email, domains. Built and still operated. White-label for agencies.",
       },
       { name: "twitter:image", content: OG_IMAGE },
     ],
@@ -72,7 +76,7 @@ export const Route = createFileRoute("/")({
     scripts: [
       {
         type: "application/ld+json",
-        children: JSON.stringify(PERSON_SCHEMA),
+        children: JSON.stringify(STUDIO_SCHEMA),
       },
     ],
   }),
@@ -301,7 +305,7 @@ function Index() {
               <div>
                 <p className="prose-body text-ink">
                   Production web apps and the infrastructure underneath them — auth, payments,
-                  webhooks, email, domains. Built and operated solo.
+                  webhooks, email, domains. One person builds it. The same person still runs it.
                 </p>
               </div>
               <p className="label rail self-end text-signal">
@@ -310,8 +314,8 @@ function Index() {
             </div>
             <div className="mt-10 grid md:grid-cols-2">
               <p className="prose-body border-[1.5px] border-ink bg-panel p-6 text-ink">
-                A UK children&apos;s play brand hired me for a 30-day build. I delivered it in nine
-                days, rated 5.0, and I still run the infrastructure it depends on.
+                A UK brand hired me for a 30-day build. I delivered it in seven working days, rated
+                5.0, and I still run the infrastructure it depends on.
               </p>
             </div>
           </Shell>
@@ -398,7 +402,7 @@ function Index() {
                     the client&apos;s existing design team.
                   </>
                 }
-                metrics="30-day scope in 9 days · Rated 5.0 · Still operated"
+                metrics="30-day scope in 7 working days · Rated 5.0 · Still operated"
                 stack="React 18 · TypeScript · Supabase · Postgres · Shopify · PWA · Cloudflare · Resend"
               />
               <Work
@@ -408,9 +412,9 @@ function Index() {
                 build={
                   <span>
                     Real-time Solana token intelligence at the edge, with an automated rug-risk
-                    engine and a transparent per-deduction breakdown, plus four independent AI agents
-                    and fifteen-pattern candlestick recognition. Custom SVG charts, zero charting
-                    libraries. Sub-50ms edge inference.
+                    engine and a transparent per-deduction breakdown, plus four independent AI
+                    agents and fifteen-pattern candlestick recognition. Custom SVG charts, zero
+                    charting libraries. Sub-50ms edge inference.
                   </span>
                 }
                 metrics="224 Commits in one sprint · 50+ Paying users · $19 Lifetime"
@@ -422,8 +426,9 @@ function Index() {
                 breakText="Order flow fragmented across exchanges, arriving too late to act on."
                 build={
                   <span>
-                    Simultaneous WebSocket feeds from three exchanges aggregated at sub-100ms through
-                    a Singapore edge proxy. Custom render pipeline holding 60fps on low-end mobile.
+                    Simultaneous WebSocket feeds from three exchanges aggregated at sub-100ms
+                    through a Singapore edge proxy. Custom render pipeline holding 60fps on low-end
+                    mobile.
                   </span>
                 }
                 metrics="80+ Users · $9"
@@ -457,9 +462,13 @@ function Index() {
         <section id="approach" aria-labelledby="approach-h" className="pb-24">
           <Shell>
             <p className="label rail text-steel">Section 02</p>
-            <h2 id="approach-h" className="display rail mt-2 mb-12 text-[clamp(2.5rem,8vw,5.5rem)]">
+            <h2 id="approach-h" className="display rail mt-2 mb-8 text-[clamp(2.5rem,8vw,5.5rem)]">
               Approach
             </h2>
+            <p className="prose-body mb-12 max-w-[62ch] text-ink">
+              If you are an agency, I work white-label. Your client sees your team, not mine, and
+              your name stays on the work.
+            </p>
             <ol className="flex flex-col">
               {[
                 "Tell me what is broken. I will tell you what I actually think is going on, before any money changes hands. That first answer is free, and it is usually the most useful part.",
@@ -515,8 +524,12 @@ function Index() {
               </p>
               <p className="label-lg rail self-end text-ink">
                 <Verify href={`mailto:${EMAIL}`}>{EMAIL}</Verify>
-                <span className="mx-3 text-steel">·</span>
-                <Verify href={GITHUB}>GitHub</Verify>
+                {GITHUB ? (
+                  <>
+                    <span className="mx-3 text-steel">·</span>
+                    <Verify href={GITHUB}>GitHub</Verify>
+                  </>
+                ) : null}
               </p>
             </div>
           </Shell>
